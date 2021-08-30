@@ -14,13 +14,22 @@ const useStyles = makeStyles((theme) => ({
 
 function ContentResult(props) {
     const classes = useStyles();
+    
+    let overline = "";
+    if (props.responseError !== "") {
+      overline = `${props.responseError}`
+    }
+
+    if (props.shortUrl !== "") {
+      overline = `Short URL: ${props.shortUrl}`
+    }
 
     return (
         <div>
             <Divider className={classes.dividerMargin} />
             <Paper className={classes.resultsPaper}>
                 <Typography variant="overline">
-                    Short URL:
+                    {overline}
                 </Typography>
 
                 <Typography variant="h3">
