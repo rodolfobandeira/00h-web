@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ContentResult(props) {
     const classes = useStyles();
-    
+
     let overline = "";
     if (props.responseError !== "") {
       overline = `${props.responseError}`

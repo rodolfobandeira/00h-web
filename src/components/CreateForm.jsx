@@ -38,7 +38,8 @@ function CreateForm({ onProcess, validateUrl }) {
                   headers: { 'X-Custom-Header': '00h WebApp v0.1 beta' }
                 });
 
-                apiProvider.post('/new', {
+                console.log("Posting at api/v1/");
+                apiProvider.post('/api/v1/new', {
                   url: url
                 }).then((res) => {
                   setShortUrl(res);
