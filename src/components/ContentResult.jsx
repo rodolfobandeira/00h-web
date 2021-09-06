@@ -1,6 +1,7 @@
 import React from 'react';
-import { Divider, Paper, Typography } from '@material-ui/core';
+import { Divider, Paper, Typography, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import AssignmentReturnOutlinedIcon from '@material-ui/icons/AssignmentReturnOutlined';
 
 const useStyles = makeStyles((theme) => ({
     resultsPaper: {
@@ -16,13 +17,28 @@ function ContentResult(props) {
     const classes = useStyles();
 
     let overline = "";
+    let copyToClipboardButton = "";
+    let shortUrl = "";
+
     if (props.responseError !== "") {
-      overline = `${props.responseError}`
+        overline = `${props.responseError.response.statusText}`
+        shortUrl = "";
+    } else {
+        // onClick={() => {navigator.clipboard.writeText(this.state.textToCopy)}}
+
+        if (props.shortUrl !== "") {
+            shortUrl = props.shortUrl;
+            overline = "Short URL: "
+            copyToClipboardButton = <Button
+                color="primary"
+                size="small"
+                variant="contained"
+                startIcon={<AssignmentReturnOutlinedIcon />}
+                onClick={() => { navigator.clipboard.writeText(props.shortUrl) }}
+            >copy</Button>
+        }
     }
 
-    if (props.shortUrl !== "") {
-      overline = `Short URL: ${props.shortUrl}`
-    }
 
     return (
         <div>
@@ -33,7 +49,17 @@ function ContentResult(props) {
                 </Typography>
 
                 <Typography variant="h3">
-                    {props.shortUrl}
+                    <div style={{ width: '100%' }}>
+                        <Box display="flex" p={1} bgcolor="background.paper">
+                            <Box p={1} width="100%">
+                                {shortUrl}
+                            </Box>
+                            <Box p={1} flexShrink={1}>
+                                {copyToClipboardButton}
+                            </Box>
+                        </Box>
+                    </div>
+
                 </Typography>
             </Paper>
         </div>

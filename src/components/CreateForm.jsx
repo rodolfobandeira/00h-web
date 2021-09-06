@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 function CreateForm({ onProcess, validateUrl }) {
   const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
@@ -31,25 +30,19 @@ function CreateForm({ onProcess, validateUrl }) {
             <form
               onSubmit={(event) => {
                 event.preventDefault();
+                let bodyFormData = new FormData();
+                bodyFormData.append('url', url);
 
-                console.log("Start processing form POST...");
-                const apiProvider = axios.create({
-                  baseURL: 'https://00h.ca',
-                  headers: { 'X-Custom-Header': '00h WebApp v0.1 beta' }
-                });
-
-                console.log("Posting at api/v1/");
-                apiProvider.post('/api/v1/new', {
-                  url: url
-                }).then((res) => {
-                  setShortUrl(res);
-                  console.log("API Response: " + res);
-
-                }, (error) => {
-                  console.log("API Error: " + error);
+                axios({
+                  method: "post",
+                  url: "https://00h.ca/new",
+                  data: bodyFormData,
+                  headers: { "Content-Type": "multipart/form-data" },
+                }).then(function (res) {
+                  setShortUrl(res.data);
+                }).catch(function (error) {
                   setResponseError(error);
                 });
-
               }}
             >
               <TextField
