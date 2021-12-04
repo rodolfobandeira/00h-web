@@ -33,6 +33,8 @@ function CreateForm({ onProcess, validateUrl }) {
                 let bodyFormData = new FormData();
                 bodyFormData.append('url', url);
 
+                setShortUrl("loading...");
+
                 axios({
                   method: "post",
                   url: "https://00h.ca/new",

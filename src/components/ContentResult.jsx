@@ -21,11 +21,9 @@ function ContentResult(props) {
     let shortUrl = "";
 
     if (props.responseError !== "") {
-        overline = `${props.responseError.response.statusText}`
-        shortUrl = "";
+        overline = "Error";
+        shortUrl = `${props.responseError.response.statusText}`;
     } else {
-        // onClick={() => {navigator.clipboard.writeText(this.state.textToCopy)}}
-
         if (props.shortUrl !== "") {
             shortUrl = props.shortUrl;
             overline = "Short URL: "
