@@ -12,4 +12,4 @@ clean:
 deploy:
 	rm -rf ./build/*
 	yarn build
-	rsync -v -r -e 'ssh -p 2802' build/ contato@gcp.rodolfo.io:/var/www/html
+	rsync -rlptD -e 'ssh -p 2802' build/ contato@gcp.rodolfo.io:/var/www/html
