@@ -4,21 +4,33 @@ import { makeStyles } from '@material-ui/core/styles';
 import ContentResult from './ContentResult';
 import axios from 'axios';
 
-
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
     paddingTop: theme.spacing(10)
   }
 }));
 
+function validateUrl(url: string) {
+  const re = /^(ftp|http|https):\/\/[^ "]+$/;
+  let response = { valid: true, text: "" }
 
-function CreateForm({ onProcess, validateUrl }) {
+  if (url.length < 7) {
+    response = { valid: false, text: "Please enter a valid URL" }
+    return response;
+  }
+
+  if (!re.test(String(url).toLowerCase())) {
+    response = { valid: false, text: "Invalid URL. We only accept: ftp, http and https schemas" }
+  }
+  return response;
+}
+
+
+function CreateForm() {
   const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
-  const [responseError, setResponseError] = useState("");
-  const [errors, setErrors] = useState({
-    url: { valid: true, text: "" }
-  });
+  const [responseError, setResponseError] = useState({ response: { statusText: ''}});
+  const [errors, setErrors] = useState({ valid: true, text: '' });
 
   const classes = useStyles();
 
@@ -49,14 +61,15 @@ function CreateForm({ onProcess, validateUrl }) {
             >
               <TextField
                 onChange={(event) => {
+                  console.log("setUrl: " + event.target.value)
                   setUrl(event.target.value);
-                  const validation = validateUrl(event.target.value);
-                  setErrors({ url: validation });
+                  const validateResponse = validateUrl(event.target.value);
+                   setErrors(validateResponse);
                 }}
                 id="url"
                 label="URL"
-                error={!errors.url.valid}
-                helperText={errors.url.text}
+                error={!errors?.valid}
+                helperText={errors?.text}
                 variant="outlined"
                 margin="normal"
                 fullWidth
@@ -69,7 +82,10 @@ function CreateForm({ onProcess, validateUrl }) {
           </Grid>
         </Grid>
       </Container>
-      <ContentResult shortUrl={shortUrl} responseError={responseError} />
+      <ContentResult
+        shortUrl={shortUrl}
+        responseError={responseError}
+      />
     </>
   );
 }

@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import CreateForm from "./components/CreateForm";
 import Footer from "./components/Footer";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import { Container } from '@material-ui/core';
 
 const customTheme = createTheme({
   palette: {
@@ -28,32 +28,14 @@ function App() {
   return (
     <>
       <ThemeProvider theme={customTheme}>
-        <Container position="fixed">
+        <Container>
           <Navbar />
-          <CreateForm
-            validateUrl={validateUrl}
-          />
+          <CreateForm />
         </Container>
       </ThemeProvider>
-      <Footer theme={customTheme} />
+      <Footer {...customTheme} />
     </>
   );
-}
-
-
-function validateUrl(url) {
-  const re = /^(ftp|http|https):\/\/[^ "]+$/;
-  let response = { valid: true, text: "" }
-
-  if (url.length < 7) {
-    response = { valid: false, text: "Please enter a valid URL" }
-    return response;
-  }
-
-  if (!re.test(String(url).toLowerCase())) {
-    response = { valid: false, text: "Invalid URL. We only accept: ftp, http and https schemas" }
-  }
-  return response;
 }
 
 

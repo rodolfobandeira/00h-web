@@ -2,6 +2,8 @@ import React from 'react';
 import { Divider, Paper, Typography, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AssignmentReturnOutlinedIcon from '@material-ui/icons/AssignmentReturnOutlined';
+import { ReactElement } from 'react';
+import {IResponseError} from '../interfaces/IResponseError';
 
 const useStyles = makeStyles((theme) => ({
     resultsPaper: {
@@ -13,26 +15,29 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ContentResult(props) {
+interface Props {
+    responseError: IResponseError,
+    shortUrl: string
+}
+
+function ContentResult({ shortUrl, responseError}: Props) {
     const classes = useStyles();
 
     let overline = "";
-    let copyToClipboardButton = "";
-    let shortUrl = "";
+    let copyToClipboardButton: ReactElement | null = null;
 
-    if (props.responseError !== "") {
+    if (responseError?.response?.statusText !== "") {
         overline = "Error";
-        shortUrl = `${props.responseError.response.statusText}`;
+        shortUrl = `${responseError?.response?.statusText}`;
     } else {
-        if (props.shortUrl !== "") {
-            shortUrl = props.shortUrl;
+        if (shortUrl !== "") {
             overline = "Short URL: "
             copyToClipboardButton = <Button
                 color="primary"
                 size="small"
                 variant="contained"
                 startIcon={<AssignmentReturnOutlinedIcon />}
-                onClick={() => { navigator.clipboard.writeText(props.shortUrl) }}
+                onClick={() => { navigator.clipboard.writeText(shortUrl) }}
             >copy</Button>
         }
     }
