@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/rodolfobandeira/00h-web/actions/workflows/node.js.yml/badge.svg)](https://github.com/rodolfobandeira/00h-web/actions/workflows/node.js.yml)
+
 ## https://00h.ca
 
 This is a simple ReactJS front-end layer that I created to study Material-UI a bit.
