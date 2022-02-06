@@ -24,7 +24,7 @@ const customTheme = createTheme({
 });
 
 
-export const validateUrl = (url) => {
+export const validateUrl = (url: string) => {
   const re = /^(ftp|http|https):\/\/[^ "]+$/;
   let response = { valid: true, text: "" }
 
