@@ -24,6 +24,22 @@ const customTheme = createTheme({
 });
 
 
+export const validateUrl = (url) => {
+  const re = /^(ftp|http|https):\/\/[^ "]+$/;
+  let response = { valid: true, text: "" }
+
+  if (url.length < 7) {
+    response = { valid: false, text: "Please enter a valid URL" }
+    return response;
+  }
+
+  if (!re.test(String(url).toLowerCase())) {
+    response = { valid: false, text: "Invalid URL. We only accept: ftp, http and https schemas" }
+  }
+  return response;
+}
+
+
 function App() {
   return (
     <>
@@ -39,22 +55,5 @@ function App() {
     </>
   );
 }
-
-
-function validateUrl(url) {
-  const re = /^(ftp|http|https):\/\/[^ "]+$/;
-  let response = { valid: true, text: "" }
-
-  if (url.length < 7) {
-    response = { valid: false, text: "Please enter a valid URL" }
-    return response;
-  }
-
-  if (!re.test(String(url).toLowerCase())) {
-    response = { valid: false, text: "Invalid URL. We only accept: ftp, http and https schemas" }
-  }
-  return response;
-}
-
 
 export default App;
