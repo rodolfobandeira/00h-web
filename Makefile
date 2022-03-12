@@ -1,7 +1,7 @@
 all: linux darwin
 
 build:
-	yarn build
+	npm build
 
 run:
 	yarn start
