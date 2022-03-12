@@ -21,6 +21,9 @@
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.17"
   },
+  "devDependencies": {
+    "react-scripts": "5.0.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
