@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Typography, Theme, createStyles } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -25,7 +24,7 @@ function Footer(theme: Theme) {
     return (
         <Container maxWidth={false} color="primary" className={classes.footer}>
             <Typography variant="body1" color="inherit">
-                © 2021 00h.ca
+                © 2022 00h.ca
             </Typography>
         </Container>
     );
