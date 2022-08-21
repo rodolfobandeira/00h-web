@@ -1,4 +1,4 @@
-[![Node.js CI](https://github.com/rodolfobandeira/00h-web/actions/workflows/node.js.yml/badge.svg)](https://github.com/rodolfobandeira/00h-web/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/rodolfobandeira/00h-web/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/rodolfobandeira/00h-web/actions/workflows/node.js.yml)
 
 ## https://00h.ca
 
