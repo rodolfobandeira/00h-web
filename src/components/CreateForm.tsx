@@ -1,14 +1,7 @@
 import { useState } from 'react';
-import { TextField, Button, Grid, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { TextField, Button, Grid, Container } from '@mui/material';
 import ContentResult from './ContentResult';
 import axios from 'axios';
-
-const useStyles = makeStyles((theme) => ({
-  contentContainer: {
-    paddingTop: theme.spacing(10)
-  }
-}));
 
 function validateUrl(url: string) {
   const re = /^(ftp|http|https):\/\/[^ "]+$/;
@@ -32,11 +25,9 @@ function CreateForm() {
   const [responseError, setResponseError] = useState({ response: { statusText: ''}});
   const [errors, setErrors] = useState({ valid: true, text: '' });
 
-  const classes = useStyles();
-
   return (
     <>
-      <Container maxWidth="xl" className={classes.contentContainer}>
+      <Container maxWidth="xl">
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <form
