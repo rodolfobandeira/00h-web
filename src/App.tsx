@@ -1,26 +1,15 @@
 import Navbar from "./components/Navbar";
 import CreateForm from "./components/CreateForm";
 import Footer from "./components/Footer";
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { Container } from '@material-ui/core';
+import { Container } from "@mui/material";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
-const customTheme = createTheme({
+const darkTheme = createTheme({
   palette: {
-    primary: {
-      light: '#62727b',
-      main: '#37474F',
-      dark: '#102027',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#474f97',
-      main: '#1a237e',
-      dark: '#121858',
-      contrastText: '#fff',
-    },
+    mode: 'dark',
   },
 });
-
 
 export const validateUrl = (url: string) => {
   const re = /^(ftp|http|https):\/\/[^ "]+$/;
@@ -37,18 +26,16 @@ export const validateUrl = (url: string) => {
   return response;
 }
 
-
 function App() {
   return (
-    <>
-      <ThemeProvider theme={customTheme}>
-        <Container>
-          <Navbar />
-          <CreateForm />
-        </Container>
-      </ThemeProvider>
-      <Footer {...customTheme} />
-    </>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Container>
+        <Navbar />
+        <CreateForm />
+      </Container>
+    <Footer />
+    </ThemeProvider>
   );
 }
 

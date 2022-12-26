@@ -1,9 +1,10 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Link } from '@material-ui/core';
+import { makeStyles } from '@mui/styles';
+import { AppBar, Toolbar, Typography, Link } from '@mui/material';
 
 const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
+        height: '4rem',
     },
     title: {
         flexGrow: 1,

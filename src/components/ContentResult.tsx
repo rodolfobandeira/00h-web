@@ -1,17 +1,13 @@
-import { Divider, Paper, Typography, Button, Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import AssignmentReturnOutlinedIcon from '@material-ui/icons/AssignmentReturnOutlined';
+import { Divider, Paper, Typography, Button, Box } from '@mui/material';
+import AssignmentReturnOutlinedIcon from '@mui/icons-material/AssignmentReturnOutlined';
 import { ReactElement } from 'react';
 import {IResponseError} from '../interfaces/IResponseError';
+import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles((theme) => ({
-    resultsPaper: {
-        padding: theme.spacing(3),
-        margin: theme.spacing(3)
-    },
-    dividerMargin: {
-        margin: theme.spacing(3)
-    }
+const useStyles = makeStyles(() => ({
+  contentResult: {
+    marginTop: '2rem',
+  }
 }));
 
 interface Props {
@@ -20,8 +16,6 @@ interface Props {
 }
 
 function ContentResult({ shortUrl, responseError}: Props) {
-    const classes = useStyles();
-
     let overline = "";
     let copyToClipboardButton: ReactElement | null = null;
 
@@ -41,11 +35,12 @@ function ContentResult({ shortUrl, responseError}: Props) {
         }
     }
 
+    const classes = useStyles();
 
     return (
-        <div>
-            <Divider className={classes.dividerMargin} />
-            <Paper className={classes.resultsPaper}>
+        <div className={classes.contentResult}>
+            <Divider />
+            <Paper>
                 <Typography variant="overline">
                     {overline}
                 </Typography>
