@@ -1,4 +1,4 @@
-import { Container, Typography, Theme, createStyles } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => ({
