@@ -12,4 +12,4 @@ clean:
 deploy:
 	rm -rf ./build/*
 	yarn build --production
-	rsync -rlptD --no-perms -O -e 'ssh -p 2802' build/ deploy@sssh.rodolfo.io:/var/www/00h
+	rsync -rlptD --no-perms -O -e 'ssh -p 2802' build/ deploy@sssh.mydevtips.com:/var/www/00h
