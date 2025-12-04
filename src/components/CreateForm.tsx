@@ -28,7 +28,7 @@ function CreateForm() {
   return (
     <>
       <Container maxWidth="xl">
-        <Grid container spacing={3}>
+        <Grid container>
           <Grid item xs={12}>
             <form
               onSubmit={(event) => {
